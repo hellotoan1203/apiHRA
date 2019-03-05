@@ -16,23 +16,27 @@ router.post('/login', bodyParserUrlEncoded, function(req, res){
     let password = req.body.password;
     if(user&&password){
         userServices.read(user, (data)=>{
-            if(data.username == user && data.password == password){
+            console.log(data);
+            if(data.userData.username == user && data.userData.password == password){
+                console.log(user)
+                console.log(password);
                 let token = jwt.sign({username: user},config.secret);
+                console.lg
                 res.json({
                     success: true,
                     message: 'Authentication successful!',
                     token: token
                 })
             }
-            else{
-                res.send(403).json({
+            else {
+                res.json({
                     success: false,
                     message: 'Incorrect username or password'
                   });
             }
         })     
     }else{
-        res.send(400).json({
+        res.json({
             success: false,
             message: 'Invalid request'
           });
