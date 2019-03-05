@@ -1,0 +1,25 @@
+{
+  "name": "apimobile",
+  "version": "1.0.0",
+  "description": "this api for HRA project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hellotoan1203/apiHRA.git"
+  },
+  "author": "Toan Ngo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hellotoan1203/apiHRA/issues"
+  },
+  "homepage": "https://github.com/hellotoan1203/apiHRA#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "firebase-admin": "^7.0.0",
+    "jsonwebtoken": "^8.5.0"
+  }
+}
