@@ -22,31 +22,31 @@ router.post('/login', bodyParserUrlEncoded, function(req, res){
                 console.log(password);
                 let token = jwt.sign({username: user},config.secret);
                 console.lg
-                res.json([{
+                res.json({
                     success: true,
                     message: 'Authentication successful!',
                     token: token
-                }])
+                })
             }
             else {
-                res.json([{
+                res.json({
                     success: false,
                     message: 'Incorrect username or password'
-                  }]);
+                  });
             }
         })     
     }else{
-        res.json([{
+        res.json({
             success: false,
             message: 'Invalid request'
-          }]);
+          });
     }
 })
 
 router.get('/user', verify.checkToken, (req,res)=>{
     let user = req.decode.username; 
     userServices.read(user,(data)=>{
-        res.json([data]);
+        res.json(data);
     })
 })
 router.post('/register',bodyParserUrlEncoded, function(req,res){
@@ -55,16 +55,16 @@ router.post('/register',bodyParserUrlEncoded, function(req,res){
     userServices.add({username: user, password: password}, (status)=>{
         if(status == 'success'){
             let token = jwt.sign({username: user},config.secret);
-            res.json([{
+            res.json({
                 success: true,
                 message: 'Authentication successful!',
                 token: token
-            }])
+            })
         }else{
-            res.json([{
+            res.json({
                 success: false,
                 message: 'User has been signed up'
-            }])
+            })
         }
     })
 })
@@ -85,9 +85,9 @@ router.patch('/user',bodyParserUrlEncoded,verify.checkToken, function(req, res){
         weight: weight,
         birthday: birthday
     });
-    res.json([{
+    res.json({
         message: 'Update successfully'
-    }])
+    })
 })
 router.patch('/usermedical',bodyParserUrlEncoded,verify.checkToken,function(req,res){
     //some thing just like this
@@ -109,9 +109,9 @@ router.patch('/usermedical',bodyParserUrlEncoded,verify.checkToken,function(req,
     }
 
     userServices.updatehistory(user,object);
-    res.json([{
+    res.json({
         message: 'Update sucessfully'
-    }])
+    })
 })
 
 module.exports.router = router;
